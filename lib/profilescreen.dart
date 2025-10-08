@@ -63,7 +63,7 @@ class ProfileScreen extends StatelessWidget {
             const SizedBox(height: 10),
             _buildProfileOption(context, 'Edit Profile', Icons.edit, const EditProfileScreen()),
             _buildProfileOption(context, 'Settings', Icons.settings, const SettingsScreen()),
-            _buildProfileOption(context, 'Payment Methods', Icons.payment, const PaymentScreen()),
+            //_buildProfileOption(context, 'Payment Methods', Icons.payment, const PaymentScreen()),
             _buildProfileOption(context, 'Addresses', Icons.location_on, const AddressScreen()),
             const SizedBox(height: 20),
 
@@ -73,7 +73,7 @@ class ProfileScreen extends StatelessWidget {
             ),
             const SizedBox(height: 10),
             _buildProfileOption(context, 'Help & Support', Icons.help, const HelpScreen()),
-            _buildProfileOption(context, 'About ByteBack', Icons.info, const AboutScreen()),
+            _buildProfileOption(context, 'About ReBooted', Icons.info, const AboutScreen()),
             _buildProfileOption(context, 'E-Waste Recycling', Icons.recycling, const RecyclingScreen()), // Fixed reference
             const SizedBox(height: 20),
 

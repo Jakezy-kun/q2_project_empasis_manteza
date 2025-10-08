@@ -3,13 +3,15 @@ import 'package:flutter/material.dart';
 import 'onboarding.dart';
 
 
-void main() {
+void main() async {
+
+  runApp(const ByteBackApp());
 
   WidgetsFlutterBinding.ensureInitialized();
 
   await Firebase.initializeApp();
 
-  runApp(const ByteBackApp());
+
 }
 
 class ByteBackApp extends StatefulWidget {
