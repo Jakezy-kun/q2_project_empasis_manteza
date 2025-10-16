@@ -1,27 +1,31 @@
 import 'package:flutter/material.dart';
-import 'homescreen.dart';
-import 'registerscreen.dart';
+import 'loginscreen.dart';
 
-class LoginScreen extends StatefulWidget {
+class RegisterScreen extends StatefulWidget {
   final Function toggleTheme;
   final bool isDarkMode;
 
-  const LoginScreen({
+  const RegisterScreen({
     super.key,
     required this.toggleTheme,
     required this.isDarkMode,
   });
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<RegisterScreen> createState() => _RegisterScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _RegisterScreenState extends State<RegisterScreen> {
   final _formKey = GlobalKey<FormState>();
+  final _usernameController = TextEditingController();
+  final _addressController = TextEditingController();
+  final _phoneController = TextEditingController();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
+  final _confirmPasswordController = TextEditingController();
+
   bool _obscurePassword = true;
-  bool _islogin = true;
+  bool _obscureConfirmPassword = true;
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +50,7 @@ class _LoginScreenState extends State<LoginScreen> {
               children: [
                 const SizedBox(height: 40),
                 const Text(
-                  'ReBooted',
+                  'Create Account',
                   style: TextStyle(
                     fontSize: 32,
                     fontWeight: FontWeight.bold,
@@ -55,9 +59,8 @@ class _LoginScreenState extends State<LoginScreen> {
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: 10),
-
                 const Text(
-                  'Buy smart. Trade back.',
+                  'Join us and start trading smart.',
                   style: TextStyle(
                     fontSize: 16,
                     color: Colors.grey,
@@ -65,6 +68,62 @@ class _LoginScreenState extends State<LoginScreen> {
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: 50),
+
+                // Username
+                TextFormField(
+                  controller: _usernameController,
+                  decoration: const InputDecoration(
+                    labelText: 'Username',
+                    prefixIcon: Icon(Icons.person),
+                    border: OutlineInputBorder(),
+                  ),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter your username';
+                    }
+                    return null;
+                  },
+                ),
+                const SizedBox(height: 20),
+
+                // Address
+                TextFormField(
+                  controller: _addressController,
+                  decoration: const InputDecoration(
+                    labelText: 'Address',
+                    prefixIcon: Icon(Icons.home),
+                    border: OutlineInputBorder(),
+                  ),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter your address';
+                    }
+                    return null;
+                  },
+                ),
+                const SizedBox(height: 20),
+
+
+                TextFormField(
+                  controller: _phoneController,
+                  keyboardType: TextInputType.phone,
+                  decoration: const InputDecoration(
+                    labelText: 'Phone Number',
+                    prefixIcon: Icon(Icons.phone),
+                    border: OutlineInputBorder(),
+                  ),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter your phone number';
+                    }
+                    if (value.length < 10) {
+                      return 'Please enter a valid phone number';
+                    }
+                    return null;
+                  },
+                ),
+                const SizedBox(height: 20),
+
 
                 TextFormField(
                   controller: _emailController,
@@ -84,6 +143,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   },
                 ),
                 const SizedBox(height: 20),
+
 
                 TextFormField(
                   controller: _passwordController,
@@ -115,15 +175,50 @@ class _LoginScreenState extends State<LoginScreen> {
                     return null;
                   },
                 ),
+                const SizedBox(height: 20),
+
+                // Confirm Password
+                TextFormField(
+                  controller: _confirmPasswordController,
+                  obscureText: _obscureConfirmPassword,
+                  decoration: InputDecoration(
+                    labelText: 'Confirm Password',
+                    prefixIcon: const Icon(Icons.lock_outline),
+                    suffixIcon: IconButton(
+                      icon: Icon(
+                        _obscureConfirmPassword
+                            ? Icons.visibility
+                            : Icons.visibility_off,
+                      ),
+                      onPressed: () {
+                        setState(() {
+                          _obscureConfirmPassword = !_obscureConfirmPassword;
+                        });
+                      },
+                    ),
+                    border: const OutlineInputBorder(),
+                  ),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please confirm your password';
+                    }
+                    if (value != _passwordController.text) {
+                      return 'Passwords do not match';
+                    }
+                    return null;
+                  },
+                ),
+
                 const SizedBox(height: 30),
 
+                // Register button
                 ElevatedButton(
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
                       Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => HomeScreen(
+                          builder: (context) => LoginScreen(
                             toggleTheme: widget.toggleTheme,
                             isDarkMode: widget.isDarkMode,
                           ),
@@ -139,41 +234,19 @@ class _LoginScreenState extends State<LoginScreen> {
                       borderRadius: BorderRadius.circular(10),
                     ),
                   ),
-                  child: const Text('Login'),
+                  child: const Text('Register'),
                 ),
+
                 const SizedBox(height: 20),
 
+                // Back to Login
                 TextButton(
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => RegisterScreen(
-                          toggleTheme: widget.toggleTheme,
-                          isDarkMode: widget.isDarkMode,
-                        ),
-                      ),
-                    );
+                    Navigator.pop(context);
                   },
                   child: const Text(
-                    "Don't have an account? Register",
+                    'Already have an account? Login',
                     style: TextStyle(color: Color(0xFF109991)),
-                  ),
-                ),
-                const SizedBox(height: 20),
-
-                const Divider(),
-
-                const SizedBox(height: 20),
-                OutlinedButton.icon(
-                  onPressed: () {},
-                  icon: const Icon(Icons.g_translate),
-                  label: const Text('Continue with Google'),
-                  style: OutlinedButton.styleFrom(
-                    padding: const EdgeInsets.symmetric(vertical: 15),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
                   ),
                 ),
               ],

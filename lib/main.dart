@@ -1,3 +1,6 @@
+import 'dart:js_interop';
+
+import 'package:device_preview/device_preview.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'onboarding.dart';
@@ -5,11 +8,13 @@ import 'onboarding.dart';
 
 void main() async {
 
-  runApp(const ByteBackApp());
+  runApp(DevicePreview(builder: (context)=>ByteBackApp()));
 
   WidgetsFlutterBinding.ensureInitialized();
 
-  await Firebase.initializeApp();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform
+  );
 
 
 }

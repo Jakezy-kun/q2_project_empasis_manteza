@@ -1,9 +1,11 @@
+//note: firebase is found in wempasis3@gmail.com
 {
   "project_info": {
     "project_number": "785932677477",
     "project_id": "rebooted-57312",
     "storage_bucket": "rebooted-57312.firebasestorage.app"
   },
+
   "client": [
     {
       "client_info": {
