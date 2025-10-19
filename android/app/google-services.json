@@ -1,28 +1,36 @@
-//note: firebase is found in wempasis3@gmail.com
 {
   "project_info": {
-    "project_number": "785932677477",
-    "project_id": "rebooted-57312",
-    "storage_bucket": "rebooted-57312.firebasestorage.app"
+    "project_number": "502335283015",
+    "project_id": "appbase-7dc0c",
+    "storage_bucket": "appbase-7dc0c.firebasestorage.app"
   },
-
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:785932677477:android:0dcf1a8b63b30c2fd5b18c",
+        "mobilesdk_app_id": "1:502335283015:android:9be5c76bcb95b1e0fdf662",
         "android_client_info": {
           "package_name": "com.example.byteback"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "502335283015-0b8n3rlcp8t8vl4rqk6elkjeh2gg7q80.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
-          "current_key": "AIzaSyBCWpwWfTcWD-Z1IkcPRwTyIVIvb1y0jDE"
+          "current_key": "AIzaSyD_5nVl6trt3qrtbhAvDg3mMhzK49tgOWo"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "502335283015-0b8n3rlcp8t8vl4rqk6elkjeh2gg7q80.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }
